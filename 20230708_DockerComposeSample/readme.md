@@ -122,10 +122,10 @@ Create dedicated dockerfile for each service as follows:
         # Log
     RUN echo "Running on Port: ${_containerPort} inside container & exposed on port ${_hostPort} to others"
         # Start the web application when the container starts
-    CMD ASPNETCORE_URLS=http://*50 dotnet MyApp.dll
+    CMD ASPNETCORE_URLS=http://*80 dotnet MyApp.dll
     ```
 
-2. **`<WebApp>` / DockerFile**
+2. **`<database-directory>` / DockerFile**
     ```
     # Use the official MySQL 8.0 Image
     FROM mysql:8.0
