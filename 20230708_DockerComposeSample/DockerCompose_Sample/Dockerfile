@@ -25,4 +25,4 @@ COPY --from=build /app .
     # Log
 RUN echo "Running on Port: ${_containerPort} inside container & exposed on port ${_hostPort} to others"
     # Start the web application when the container starts
-CMD ASPNETCORE_URLS=http://*80 dotnet MyApp.dll
+CMD ASPNETCORE_URLS=http://*80 dotnet DockerCompose_Sample.dll

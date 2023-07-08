@@ -21,16 +21,16 @@ services:     # Services to run (in dedicated images)
         - _containerPort=${_MYSQL_DB_CONTAINER_PORT}
         - _hostPort=${_MYSQL_DB_HOST_PORT}
     environment:                # DB Environment Variables set using --> Using: values set in .env
-      - MYSQL_DATABASE = ${_MYSQL_DATABASE}
-      - MYSQL_USER = ${_MYSQL_USER}
-      - MYSQL_PASSWORD = ${_MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD = ${_MYSQL_ROOT_PASSWORD}
-      - MYSQL_DB_HOST_PORT = ${_MYSQL_DB_HOST_PORT}
-      - MYSQL_DB_CONTAINER_PORT = ${_MYSQL_DB_CONTAINER_PORT}
+      - MYSQL_DATABASE=${_MYSQL_DATABASE}
+      - MYSQL_USER=${_MYSQL_USER}
+      - MYSQL_PASSWORD=${_MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DB_HOST_PORT=${_MYSQL_DB_HOST_PORT}
+      - MYSQL_DB_CONTAINER_PORT=${_MYSQL_DB_CONTAINER_PORT}
     volumes:                    # Makes DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
       - db-data:/var/lib/mysql 
     ports:
-      - "${_WEBAPP_HOST_PORT}:${_WEBAPP_CONTAINER_PORT}"
+      - "${_MYSQL_DB_HOST_PORT}:${_MYSQL_DB_CONTAINER_PORT}"
     
 volumes:      # Volumes used (for persistence puspose)   -   [Otherwise data is lost on each launch]
   db-data:        # Helps make DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
