@@ -31,9 +31,18 @@ The key features of Compose that make it effective are:
 2. Provide Project Name
 3. Select .NET 6.0 (LTS)
 
-### B. Directory for MySQL Database
+### B. MySQL Database
 1. **Go to:** `<Project-Parent-Directory>`
 2. **Add New Directory:** “MysqlDatabaseInstance”
+3. **Add Init.sql File:** To create a table as follows,
+     ```
+     CREATE TABLE Customers (
+        Id INT AUTO_INCREMENT PRIMARY KEY,
+        Name VARCHAR(50) NOT NULL,
+        Email VARCHAR(50) NOT NULL
+    )
+    ```
+
 
 ### C. Environment Variables (For all services)
 1. **Go to:**  `<Project-Parent-Directory>`
@@ -137,6 +146,18 @@ Create dedicated dockerfile for each service as follows:
     RUN echo "Running on Port: ${_containerPort} inside container & exposed on port ${_hostPort} to others"
     ```
     
-## Bibliographies
+# ---------- Pending ----------
+
+### F. Add a Web Page (to the Web App) with 2 buttons:
+1. **Push**: To connect to the **Database** & add a new unique entry in the (only created) table
+2. **Display Records**:  To connect to the **Database**, retrieve all the records & display them
+
+### G. Change Default (Container) Ports for each service:
+1. **WebApp**: Default = 80    &rarr;  [Change to something else]
+2. **MySql Database**:  Default = 3306    &rarr;  [Change to something else]
+
+# ---------- ! Pending ! ----------
+
+## References
 [1] <a id='1'> [Docker Compose](https://docs.docker.com/compose/) </a>
 
