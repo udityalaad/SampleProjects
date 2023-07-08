@@ -15,7 +15,7 @@ The key features of Compose that make it effective are:
 
 ## Purpose of the Sample Project
 - Learn how to deploy mutliple services in dedicated linux-container-images using **docker-compose** & **DockerFile**.
-- In this project, we to deploy the following 2 services:
+- In this project, we deploy the following 2 services:
   1. **MySql Database** service
   2. **Dotnet Core Web App**  that consumes the database service
 
@@ -29,13 +29,11 @@ The key features of Compose that make it effective are:
 ### A. Web App
 1. Visual Studio  &rarr;  Create New Project
 2. Provide Project Name
-3. Select DotNet 6 (LTS)
+3. Select .NET 6.0 (LTS)
 
 ### B. Directory for MySQL Database
 1. **Go to:** `<Project-Parent-Directory>`
 2. **Add New Directory:** “MysqlDatabaseInstance”
-
-We wish to host the above 2 services in 2 separates linux-container-images
 
 ### C. Environment Variables (For all services)
 1. **Go to:**  `<Project-Parent-Directory>`
