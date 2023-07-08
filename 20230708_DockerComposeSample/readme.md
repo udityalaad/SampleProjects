@@ -112,7 +112,7 @@ Create dedicated dockerfile for each service as follows:
         # Set the working directory in the container
     WORKDIR /src
         # Copy the project file and restore dependencies
-    COPY MyApp.csproj .
+    COPY <web-app-name>.csproj .
     RUN dotnet restore
         # Copy the remaining source code files
     COPY . .
@@ -135,6 +135,8 @@ Create dedicated dockerfile for each service as follows:
         # Start the web application when the container starts
     CMD ASPNETCORE_URLS=http://*80 dotnet MyApp.dll
     ```
+    
+- Replace `<web-app-name>` with the right value.
 
 2. **`<database-directory>` / Dockerfile**
     ```
