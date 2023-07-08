@@ -68,7 +68,7 @@ The key features of Compose that make it effective are:
     services:     # Services to run (in dedicated images)
       web:                  # Service-1:  Web Application --> <Free to use any name>
         build:                    # Build-Application Reference (via Dockerfile)
-          context:  ./MyApp
+          context:  ./<web-app-name>
           dockerfile: Dockerfile
           args:                       # Arguments to pass to the <dockerFile>
             - _containerPort=${_WEBAPP_CONTAINER_PORT}
@@ -80,7 +80,7 @@ The key features of Compose that make it effective are:
         
       db:                   # Service-2:  SQL Database --> <Free to use any name>
         build:                      # Database Configuration
-          context: ./MysqlDatabase
+          context: ./<db-directory-name>
           dockerfile: Dockerfile
           args:                       # Arguments to pass to the <dockerFile>
             - _containerPort=${_MYSQL_DB_CONTAINER_PORT}
@@ -101,9 +101,11 @@ The key features of Compose that make it effective are:
       db-data:        # Helps make DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
     ```
 
+- Replace `<web-app-name>` & `<db-directory-name>` with their respective values.
+
 ### E. Configure dockerfile(s)
 Create dedicated dockerfile for each service as follows:
-1. **`<WebApp>` / DockerFile**
+1. **`<WebApp>` / Dockerfile**
     ```
     # Use the official .NET 6.0 SDK as the build image
     FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
@@ -134,7 +136,7 @@ Create dedicated dockerfile for each service as follows:
     CMD ASPNETCORE_URLS=http://*80 dotnet MyApp.dll
     ```
 
-2. **`<database-directory>` / DockerFile**
+2. **`<database-directory>` / Dockerfile**
     ```
     # Use the official MySQL 8.0 Image
     FROM mysql:8.0
@@ -157,6 +159,11 @@ Create dedicated dockerfile for each service as follows:
 2. **MySql Database**:  Default = 3306    &rarr;  [Change to something else]
 
 # ---------- ! Pending ! ----------
+
+### H. Build & run both services (in separate images) as per their respective Dockerfile
+```
+docker-compose up --build
+```
 
 ## References
 [1] <a id='1'> [Docker Compose](https://docs.docker.com/compose/) </a>
