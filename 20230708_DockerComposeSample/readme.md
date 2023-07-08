@@ -126,6 +126,7 @@ Create dedicated dockerfile for each service as follows:
     FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
         # Collect Arguments passed to this DockerFile  -->  [Needs to be collected where it is used (E.g. 'runtime' here)]
     ARG _containerPort
+    ARG _hostPort
         # Set the working directory in the container
     WORKDIR /app
         # Copy the published output of the web application from the build image
@@ -144,6 +145,7 @@ Create dedicated dockerfile for each service as follows:
     FROM mysql:8.0
         # Collect Arguments passed to this DockerFile  -->  [Needs to be collected where it is used (E.g. 'runtime' here)]
     ARG _containerPort
+    ARG _hostPort
         # Copy SQL script to initialize the DB
     COPY init.sql /docker-entrypoint-initdb.d/
         # Log
