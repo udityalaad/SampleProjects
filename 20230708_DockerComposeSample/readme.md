@@ -94,7 +94,7 @@ The key features of Compose that make it effective are:
         volumes:                    # Makes DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
           - db-data:/var/lib/mysql 
         ports:
-          - "${_MYSQL_DB_HOST_PORT}:${_WEBAPP_CONTAINER_PORT}"
+          - "${_MYSQL_DB_HOST_PORT}:${_MYSQL_DB_CONTAINER_PORT}"
         
     volumes:      # Volumes used (for persistence puspose)   -   [Otherwise data is lost on each launch]
       db-data:        # Helps make DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
