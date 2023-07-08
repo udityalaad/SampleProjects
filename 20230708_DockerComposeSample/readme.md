@@ -13,23 +13,17 @@ The key features of Compose that make it effective are:
 - Only recreate containers that have changed
 - Supports variables and moving a composition between environments
 
-<br>
-
 ## Purpose of the Sample Project
 - Learn how to deploy mutliple services in dedicated linux-container-images using **docker-compose** & **DockerFile**.
 - In this project, we to deploy the following 2 services:
   1. **MySql Database** service
   2. **Dotnet Core Web App**  that consumes the database service
 
-<br>
-
 ## Requirements
 - **OS:** Windows/Mac/Linux
 - **IDE:** Visual Studio (Preferred) / VS Code
 - .NET 6.0 (LTS), MySQL 8.0
 - Docker
-
-<br>
 
 ## Instructions / Steps
 ### A. Web App
@@ -144,9 +138,7 @@ Create dedicated dockerfile for each service as follows:
         # Log
     RUN echo "Running on Port: ${_containerPort} inside container & exposed on port ${_hostPort} to others"
     ```
-
-<br>
-
+    
 ## Bibliographies
 [1] <a id='1'> [Docker Compose](https://docs.docker.com/compose/) </a>
 
