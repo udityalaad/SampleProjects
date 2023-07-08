@@ -48,15 +48,14 @@ The key features of Compose that make it effective are:
 1. **Go to:**  `<Project-Parent-Directory>`
 2. Create **.env** file, with the following content:
     ```
+    _WEBAPP_HOST_PORT=2222
+    _WEBAPP_CONTAINER_PORT=80
     _MYSQL_DATABASE="DB_DockerCompose"
     _MYSQL_USER="useCase_db_user"
     _MYSQL_PASSWORD="useCase_db_password"
     _MYSQL_ROOT_PASSWORD="useCase_db_root_password"
     _MYSQL_DB_HOST_PORT=1111
     _MYSQL_DB_CONTAINER_PORT=3306
-    
-    _WEBAPP_HOST_PORT=2222
-    _WEBAPP_CONTAINER_PORT=80
     ```
     
 ### D. Configure docker-compose
@@ -86,16 +85,16 @@ The key features of Compose that make it effective are:
             - _containerPort=${_MYSQL_DB_CONTAINER_PORT}
             - _hostPort=${_MYSQL_DB_HOST_PORT}
         environment:                # DB Environment Variables set using --> Using: values set in .env
-          - MYSQL_DATABASE = ${_MYSQL_DATABASE}
-          - MYSQL_USER = ${_MYSQL_USER}
-          - MYSQL_PASSWORD = ${_MYSQL_PASSWORD}
-          - MYSQL_ROOT_PASSWORD = ${_MYSQL_ROOT_PASSWORD}
-          - MYSQL_DB_HOST_PORT = ${_MYSQL_DB_HOST_PORT}
-          - MYSQL_DB_CONTAINER_PORT = ${_MYSQL_DB_CONTAINER_PORT}
+          - MYSQL_DATABASE=${_MYSQL_DATABASE}
+          - MYSQL_USER=${_MYSQL_USER}
+          - MYSQL_PASSWORD=${_MYSQL_PASSWORD}
+          - MYSQL_ROOT_PASSWORD=${_MYSQL_ROOT_PASSWORD}
+          - MYSQL_DB_HOST_PORT=${_MYSQL_DB_HOST_PORT}
+          - MYSQL_DB_CONTAINER_PORT=${_MYSQL_DB_CONTAINER_PORT}
         volumes:                    # Makes DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
           - db-data:/var/lib/mysql 
         ports:
-          - "${_WEBAPP_HOST_PORT}:${_WEBAPP_CONTAINER_PORT}"
+          - "${_MYSQL_DB_HOST_PORT}:${_WEBAPP_CONTAINER_PORT}"
         
     volumes:      # Volumes used (for persistence puspose)   -   [Otherwise data is lost on each launch]
       db-data:        # Helps make DB persistent (even after restarts)   -   [Otherwise data is lost on each launch]
@@ -134,7 +133,7 @@ Create dedicated dockerfile for each service as follows:
         # Log
     RUN echo "Running on Port: ${_containerPort} inside container & exposed on port ${_hostPort} to others"
         # Start the web application when the container starts
-    CMD ASPNETCORE_URLS=http://*80 dotnet MyApp.dll
+    CMD ASPNETCORE_URLS=http://*80 dotnet <web-app-name>.dll
     ```
     
 - Replace `<web-app-name>` with the right value.
